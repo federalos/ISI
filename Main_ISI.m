@@ -6,7 +6,7 @@ Register = [1 0 0 1 0 1 0 1 0 0 0 0 0 0 0 ];
 Nsk = 4;
 Nfft = 1024;
 Nc = 400;
-NumbOfSymbol = 2;
+NumbOfSymbol = 5;
 Ration_Of_Pilots = 20;
 AmpPilot = 4/3*sqrt(2);
 Ts = Nfft/8;
@@ -17,9 +17,6 @@ Ts = Nfft/8;
 typy_of_window = 'cos'; % 'triangle' 'cos' 'rectangle'
     %window width
 a = Ts/2;
-    %choose between
-    %overlapped(1) and non(0) windows
-overlap = 1;
     % width of overlap
 WO = Ts/2;
     %signal
@@ -33,8 +30,7 @@ InformF = Mapper(Bits, Nsk);
                 InformF, Index_Inform, Index_Pilot, Nfft, AmpPilot ); 
 SignalTs = AddTs (Signal, Nfft);
 %Window
-Signal_With_Window = formwindow(typy_of_window, overlap, WO, ...
-                                    Nfft, Ts, a, SignalTs);
+Signal_With_Window = formwindow(typy_of_window, WO, Nfft, Ts, a, SignalTs);
 figure;
 plot(20*log10(abs(fft(SignalTs))))
 hold on;
