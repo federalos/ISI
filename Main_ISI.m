@@ -6,7 +6,7 @@ Register = [1 0 0 1 0 1 0 1 0 0 0 0 0 0 0 ];
 Nsk = 4;
 Nfft = 1024;
 Nc = 400;
-NumbOfSymbol = 5;
+NumbOfSymbol = 2;
 Ration_Of_Pilots = 20;
 AmpPilot = 4/3*sqrt(2);
 Ts = Nfft/8;
@@ -14,11 +14,11 @@ Ts = Nfft/8;
 
     %choose the type of window.
     %there listed realized type of windows
-typy_of_window = 'cos'; % 'triangle' 'cos' 'rectangle'
+typy_of_window = 'triangle'; % 'triangle' 'cos' 'rectangle'
     %window width
-a = Ts/2;
+a = Ts/8;
     % width of overlap
-WO = Ts/2;
+WO = Ts/8;
     %signal
 [ Index_Inform , Index_Pilot ] = FormIndex ( Nc, Ration_Of_Pilots );
 Nc = Nc + 1;
@@ -32,10 +32,10 @@ SignalTs = AddTs (Signal, Nfft);
 %Window
 Signal_With_Window = formwindow(typy_of_window, WO, Nfft, Ts, a, SignalTs);
 figure;
-plot(20*log10(abs(fft(SignalTs))))
-hold on;
+% plot(20*log10(abs(fft(SignalTs))))
+% hold on;
 plot(20*log10(abs(fft(Signal_With_Window))))
-hold off;
+% hold off;
 % figure
 % plot(abs(fft(SignalTs(1:Nfft))))
 % hold on;
